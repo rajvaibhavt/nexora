@@ -27,7 +27,7 @@ function Features() {
     >
       <div className="mx-auto max-w-7xl">
 
-        {/* Section heading */}
+        
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-light">
             Why Nexora
@@ -46,7 +46,7 @@ function Features() {
           </p>
         </div>
 
-        {/* Feature cards */}
+        
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <article
