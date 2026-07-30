@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
+import Explore from "../components/Explore";
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <main>
         <Hero />
         <Features/>
+        <Explore />
       </main>
     </>
   );
