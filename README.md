@@ -1,16 +1,98 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nexora is a responsive product discovery web application built with React and Tailwind CSS. It provides a clean interface for exploring products fetched from a public REST API, searching through results, and testing a client-side validated login experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Fully responsive landing page
+- Product data fetched from a public REST API
+- Responsive product cards
+- Product search
+- Loading skeletons while data is being fetched
+- Error handling with retry functionality
+- Empty search state
+- Login form with client-side validation
+- Email format validation
+- Password validation
+- Show/hide password
+- Responsive navigation menu
+- Reusable React components
+- Centralized color configuration
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- JavaScript
+- REST API
+- ESLint
+- Git & GitHub
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+├── assets/
+├── components/
+│   ├── About.jsx
+│   ├── CTA.jsx
+│   ├── Explore.jsx
+│   ├── Features.jsx
+│   ├── Footer.jsx
+│   ├── Hero.jsx
+│   ├── Navbar.jsx
+│   ├── ProductCard.jsx
+│   └── ProductSkeleton.jsx
+├── pages/
+│   ├── Home.jsx
+│   └── Login.jsx
+├── services/
+│   └── api.js
+├── styles/
+│   └── colors.css
+├── utils/
+│   └── validation.js
+├── App.jsx
+├── index.css
+└── main.jsx
+```
+
+The login form validates:
+
+- Required email and password fields
+- Valid email format
+- Minimum password length
+- Uppercase letter
+- Lowercase letter
+- Number
+Validation is performed on the client side.
+## API Integration
+
+Product data is fetched from a public REST API through the API service located in:
+
+```text
+src/services/api.js
+```
+
+The interface includes loading, error, retry, search, and empty-result states.
+
+## Production Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
+
+## Author
+
+Raj Vaibhav
