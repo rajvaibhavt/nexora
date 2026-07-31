@@ -9,23 +9,47 @@ function Explore() {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
 
-  async function loadProducts() {
-    try {
-      setLoading(true);
-      setError("");
+  useEffect(() => {
+    let ignore = false;
 
+    async function fetchProducts() {
+      try {
+        const data = await getProducts();
+
+        if (!ignore) {
+          setProducts(data);
+        }
+      } catch {
+        if (!ignore) {
+          setError("We couldn't load the products. Please try again.");
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchProducts();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  async function handleRetry() {
+    setLoading(true);
+    setError("");
+
+    try {
       const data = await getProducts();
       setProducts(data);
-    } catch (err) {
+    } catch {
       setError("We couldn't load the products. Please try again.");
     } finally {
       setLoading(false);
     }
   }
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
@@ -38,7 +62,6 @@ function Explore() {
     >
       <div className="mx-auto max-w-7xl">
 
-        
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-light">
             Explore
@@ -56,7 +79,6 @@ function Explore() {
           </p>
         </div>
 
-        
         {!loading && !error && (
           <div className="mx-auto mt-10 max-w-xl">
             <div className="relative">
@@ -75,16 +97,13 @@ function Explore() {
           </div>
         )}
 
-        
         {error && (
           <div className="mx-auto mt-12 max-w-lg rounded-2xl border border-error/30 bg-error/10 p-6 text-center">
-            <p className="text-error">
-              {error}
-            </p>
+            <p className="text-error">{error}</p>
 
             <button
               type="button"
-              onClick={loadProducts}
+              onClick={handleRetry}
               className="mt-4 rounded-lg bg-primary px-5 py-2.5 font-semibold text-white transition hover:bg-primary-light"
             >
               Try Again
@@ -92,7 +111,6 @@ function Explore() {
           </div>
         )}
 
-        
         {loading && (
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: 8 }).map((_, index) => (
@@ -101,7 +119,6 @@ function Explore() {
           </div>
         )}
 
-        
         {!loading && !error && (
           <>
             {filteredProducts.length > 0 ? (
@@ -126,7 +143,6 @@ function Explore() {
             )}
           </>
         )}
-
       </div>
     </section>
   );
